@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">LittleLemon</string>
+    <string name="app_name">Little Lemon</string>
+    <string name="app_logo">App logo</string>
+
+    <!--Onboarding Screen-->
+    <string name="greeting">Let\'s get to know you</string>
+    <string name="heading">Personal information</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+
+    <!--Profile Screen-->
+    <string name="logout">Log out</string>
+
+    <!--Home Screen-->
+    <string name="profile_image">Profile photo</string>
+
+
 </resources>
