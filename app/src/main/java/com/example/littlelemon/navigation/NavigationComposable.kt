@@ -12,7 +12,7 @@ import com.example.littlelemon.screens.Profile
 @Composable
 fun Navigation(
     navController: NavHostController,
-    viewModel: AppViewModel
+    viewModel: AppViewModel,
 ) {
     NavHost(
         navController = navController,
@@ -22,7 +22,7 @@ fun Navigation(
             Onboarding(navController, viewModel)
         }
         composable(HomeScreen.route) {
-            Home(navController)
+            Home(navController, viewModel)
         }
         composable(ProfileScreen.route) {
             Profile(navController, viewModel)

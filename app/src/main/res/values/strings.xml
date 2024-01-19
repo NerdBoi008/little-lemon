@@ -15,6 +15,14 @@
 
     <!--Home Screen-->
     <string name="profile_image">Profile photo</string>
-
+    <string name="hero_heading">Little Lemon</string>
+    <string name="hero_city">Chicago</string>
+    <string name="hero_desc">We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist</string>
+    <string name="search_query">Enter search phrase</string>
+    <string name="category_heading">ORDER FOR DELIVERY!</string>
+    <string name="starters">Starters</string>
+    <string name="mains">Mains</string>
+    <string name="desserts">Desserts</string>
+    <string name="drinks">Drinks</string>
 
 </resources>

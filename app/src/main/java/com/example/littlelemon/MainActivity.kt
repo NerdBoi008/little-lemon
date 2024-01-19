@@ -14,10 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.littlelemon.model.AppViewModel
 import com.example.littlelemon.model.AppViewModelFactory
 import com.example.littlelemon.navigation.Navigation
+import com.example.littlelemon.repository.MenuNetworkRepository
 import com.example.littlelemon.ui.theme.LittleLemonTheme
 
-
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,10 +31,13 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     val sharedPreferences by lazy { getSharedPreferences("user-data", MODE_PRIVATE) }
 
-                    val viewModel: AppViewModel = ViewModelProvider(this, AppViewModelFactory.getInstance(sharedPreferences))
+                    val viewModel: AppViewModel = ViewModelProvider(this, AppViewModelFactory.getInstance(sharedPreferences, MenuNetworkRepository(), applicationContext))
                         .get(AppViewModel::class.java)
 
-                    Navigation(navController = navController, viewModel)
+                    Navigation(
+                        navController = navController,
+                        viewModel = viewModel,
+                    )
                 }
             }
         }
