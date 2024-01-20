@@ -25,9 +25,9 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -60,8 +60,13 @@ import com.example.littlelemon.ui.theme.Yellow
 fun Home(navController: NavHostController, viewModel: AppViewModel) {
 
     val networkMenu by viewModel.menuItemsState.collectAsState()
+    Log.d("HOME", "$networkMenu")
 
     var searchString by remember { mutableStateOf("") }
+
+    LaunchedEffect(networkMenu) {
+        viewModel.getFoodMenuLocal()
+    }
 
     Column(
         modifier = Modifier
@@ -77,23 +82,16 @@ fun Home(navController: NavHostController, viewModel: AppViewModel) {
             item {
                 Hero(
                     onSearch = {
-                        Log.d("HOME", "$it")
                         searchString = it
+                        Log.d("HOME", searchString)
                     }
                 )
                 CategorySection()
             }
-            items(networkMenu) {
-                android.util.Log.i("HOME", "inside else $it")
-                MenuItemLayout(
-                    title = it.title,
-                    description = it.description,
-                    price = it.price,
-                    imageSource = it.image
-                )
-            }
             if (searchString.isNotEmpty()) {
-                items(networkMenu.filter { it.title.contains(searchString) }) {
+                items(networkMenu.filter {
+                    it.title.contains(searchString)
+                }) {
                         Log.e("HOME", "inside if $it")
                     MenuItemLayout(
                         title = it.title,
@@ -103,7 +101,15 @@ fun Home(navController: NavHostController, viewModel: AppViewModel) {
                     )
                 }
             } else {
-
+                items(networkMenu) {
+                    Log.i("HOME", "inside else $it")
+                    MenuItemLayout(
+                        title = it.title,
+                        description = it.description,
+                        price = it.price,
+                        imageSource = it.image
+                    )
+                }
             }
         }
     }
