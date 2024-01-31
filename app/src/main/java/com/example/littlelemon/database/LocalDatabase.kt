@@ -1,6 +1,5 @@
 package com.example.littlelemon.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Database
@@ -11,6 +10,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
+import kotlinx.coroutines.flow.Flow
 
 @Entity
 data class MenuItem(
@@ -25,7 +25,7 @@ data class MenuItem(
 @Dao
 interface MenuDao {
     @Query("SELECT * FROM MenuItem")
-    fun getAllMenuItems(): LiveData<List<MenuItem>>
+    fun getAllMenuItems(): Flow<List<MenuItem>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveMenuItem(menuItem: MenuItem)
